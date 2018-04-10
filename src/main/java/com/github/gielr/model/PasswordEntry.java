@@ -1,15 +1,26 @@
 package com.github.gielr.model;
 
+import java.util.Arrays;
+
 public class PasswordEntry {
-    private Integer id;
+    private Long id;
     private String serviceName;
     private String login;
-    private String password;
+    private char[] password;
 
-    public PasswordEntry(String serviceName, String login, String password) {
+    public PasswordEntry(Long id, String serviceName, String login, char[] password) {
+        this.id = id;
         this.serviceName = serviceName;
         this.login = login;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getServiceName() {
@@ -28,28 +39,21 @@ public class PasswordEntry {
         this.login = login;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override
     public String toString() {
         return "PasswordEntry{" +
-                "serviceName='" + serviceName + '\'' +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
+                ", password=" + Arrays.toString(password) +
                 '}';
     }
 }
