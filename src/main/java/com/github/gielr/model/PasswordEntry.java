@@ -19,32 +19,16 @@ public class PasswordEntry {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getServiceName() {
         return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public char[] getPassword() {
         return password;
-    }
-
-    public void setPassword(char[] password) {
-        this.password = password;
     }
 
     @Override
@@ -55,5 +39,42 @@ public class PasswordEntry {
                 ", login='" + login + '\'' +
                 ", password=" + Arrays.toString(password) +
                 '}';
+    }
+
+    public static class Builder{
+        private Long id;
+        private String serviceName;
+        private String login;
+        private char[] password;
+
+        private Builder(){}
+
+        public static Builder create(){
+            return new Builder();
+        }
+
+        public Builder withId(Long id){
+            this.id = id;
+            return this;
+        }
+
+        public Builder withServiceName(String serviceName){
+            this.serviceName = serviceName;
+            return this;
+        }
+
+        public Builder withLogin(String login){
+            this.login = login;
+            return this;
+        }
+
+        public Builder withPassword(char[] password){
+            this.password = password;
+            return this;
+        }
+
+        public PasswordEntry build(){
+            return new PasswordEntry(id,serviceName,login,password);
+        }
     }
 }

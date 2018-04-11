@@ -10,29 +10,12 @@ import java.io.IOException;
 import java.util.Map;
 
 public class FileSafeController {
-    public static void main(String[] args) throws IOException {
-//        PasswordSafe ps = new PasswordSafe();
-//        PasswordEntry pe = new PasswordEntry(1l, "wp", "robert1", new char[]{120, 121, 122});
-//        PasswordEntry pe2 = new PasswordEntry(2l, "wp2", "robert2", new char[]{121, 122, 122});
-//        ps.add(pe);
-//        ps.add(pe2);
-
-        //ps.printMap();
-
-//        writeToFile("baza.txt", ps.getMap());
-        FileSafeController fsc = new FileSafeController();
-        PasswordSafe ps = fsc.readFileToNewPasswordSafe("baza.txt");
-        ps.printMap();
-
-
-//        List<PasswordEntry> list = readFileToMap("baza.txt");
-//        PasswordSafe passwordSafe = createNewPasswordSafe(list);
-//        passwordSafe.printMap();
-    }
 
     public void writeNewPasswordSafeToFile(String fileName, Map<Long, PasswordEntry> map) throws IOException {
         Gson gson = new Gson();
         File path = new File(fileName);
+
+        FileUtils.write(path, "");
 
         for (Map.Entry<Long, PasswordEntry> entry : map.entrySet()) {
             String zapis = gson.toJson(entry.getValue());
