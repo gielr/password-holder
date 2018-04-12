@@ -15,37 +15,40 @@ public class FileSafeController {
         Gson gson = new Gson();
         File path = new File(fileName);
 
-        FileUtils.write(path, "");
+        FileUtils.write(path, "uncrypted\n");
 
         for (Map.Entry<Long, PasswordEntry> entry : map.entrySet()) {
             String zapis = gson.toJson(entry.getValue());
             FileUtils.write(path, zapis + "\n", true);
         }
+        FileCrypter.encrypt();
     }
 
     public void writeNewPasswordEntryToFile(String fileName, PasswordEntry passwordEntry) throws IOException {
+        FileCrypter.decrypt();
         Gson gson = new Gson();
         File path = new File(fileName);
 
         String zapis = gson.toJson(passwordEntry);
         FileUtils.write(path, zapis + "\n", true);
-
+        FileCrypter.encrypt();
     }
 
 
     public PasswordSafe readFileToNewPasswordSafe(String fileName) throws IOException {
+        FileCrypter.decrypt();
         File file = new File(fileName);
 
         String odczyt = FileUtils.readFileToString(file);
         String[] array = odczyt.split("\n");
-
+        FileCrypter.encrypt();
         return createNewPasswordSafeFromArray(array);
     }
 
     private PasswordSafe createNewPasswordSafeFromArray(String[] array) {
         Gson gson = new Gson();
         PasswordSafe passwordSafe = new PasswordSafe();
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             PasswordEntry passwordEntry = gson.fromJson(array[i], PasswordEntry.class);
             passwordSafe.add(passwordEntry);
         }

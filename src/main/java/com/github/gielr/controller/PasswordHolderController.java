@@ -3,12 +3,16 @@ package com.github.gielr.controller;
 import com.github.gielr.model.PasswordEntry;
 import com.github.gielr.model.PasswordSafe;
 
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class PasswordHolderController {
+
     public void addNewRecord(PasswordSafe passwordSafe, String serviceName, String login, char[] password) throws IOException {
         long firstIdToTake = passwordSafe.getMap().keySet().stream().mapToLong(l -> l).max().orElse(0L) + 1;
 

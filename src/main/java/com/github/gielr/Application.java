@@ -24,6 +24,7 @@ public class Application {
         boolean loop = true;
 
         while (loop) {
+
             System.out.println("1: Dodaj nowy wpis \n" +
                     "2: Usun wpis \n" +
                     "3: Wyswietl wszystkie wpisy \n" +
