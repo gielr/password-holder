@@ -21,27 +21,27 @@ public class FileSafeController {
             String zapis = gson.toJson(entry.getValue());
             FileUtils.write(path, zapis + "\n", true);
         }
-        FileCrypter.encrypt();
+        FileCrypter.encrypt("baza.txt");
     }
 
     public void writeNewPasswordEntryToFile(String fileName, PasswordEntry passwordEntry) throws IOException {
-        FileCrypter.decrypt();
+        FileCrypter.decrypt("baza.txt");
         Gson gson = new Gson();
         File path = new File(fileName);
 
         String zapis = gson.toJson(passwordEntry);
         FileUtils.write(path, zapis + "\n", true);
-        FileCrypter.encrypt();
+        FileCrypter.encrypt("baza.txt");
     }
 
 
     public PasswordSafe readFileToNewPasswordSafe(String fileName) throws IOException {
-        FileCrypter.decrypt();
+        FileCrypter.decrypt("baza.txt");
         File file = new File(fileName);
 
         String odczyt = FileUtils.readFileToString(file);
         String[] array = odczyt.split("\n");
-        FileCrypter.encrypt();
+        FileCrypter.encrypt("baza.txt");
         return createNewPasswordSafeFromArray(array);
     }
 

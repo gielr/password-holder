@@ -59,8 +59,8 @@ public class FileCrypter {
         in.close();
     }
 
-    public static void encrypt() {
-        File dir = new File("baza.txt");
+    public static void encrypt(String direction) {
+        File dir = new File(direction);
 
         FileCrypter ske;
         try {
@@ -79,8 +79,8 @@ public class FileCrypter {
         }
     }
 
-    public static void decrypt() {
-        File dir = new File("baza.txt");
+    public static void decrypt(String direction) {
+        File dir = new File(direction);
 
         FileCrypter ske;
         try {
